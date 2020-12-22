@@ -24,7 +24,6 @@ public class CharacterKeyboardMover: MonoBehaviour {
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
         float y = Input.GetAxis("Jump");
-        //if (x == 0 && z == 0) return;
         velocity.x = x * _speed;
         velocity.z = z * _speed;
         if (!_cc.isGrounded)
@@ -39,11 +38,8 @@ public class CharacterKeyboardMover: MonoBehaviour {
         {
             Debug.Log(_cc.isGrounded);
             y += jumpHight;
-        }
-        
-            // Click Up: velocity = (0,0,1)
-            velocity = transform.TransformDirection(velocity);
-        //Debug.Log("velocity="+velocity+" isGrounded="+ _cc.isGrounded);
+        }        
+         velocity = transform.TransformDirection(velocity);
         _cc.Move(velocity * Time.deltaTime);
     }
 }
