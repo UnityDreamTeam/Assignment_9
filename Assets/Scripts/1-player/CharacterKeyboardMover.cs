@@ -10,6 +10,8 @@ public class CharacterKeyboardMover: MonoBehaviour {
     [Tooltip("Speed of player keyboard-movement, in meters/second")]
     [SerializeField] float _speed = 3.5f;
     [SerializeField] float _gravity = 9.81f;
+    [SerializeField] KeyCode jump_key;
+    readonly float jumpHight = 10;
 
     private CharacterController _cc;
     void Start() {
@@ -21,15 +23,23 @@ public class CharacterKeyboardMover: MonoBehaviour {
     void Update()  {
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
-        //if (x == 0 && z == 0) return;
+        float y = Input.GetAxis("Jump");
         velocity.x = x * _speed;
         velocity.z = z * _speed;
-        if (!_cc.isGrounded) {
-            velocity.y -= _gravity*Time.deltaTime;
+        if (!_cc.isGrounded)
+        {
+            velocity.y -= _gravity * Time.deltaTime;
         }
-        // Click Up: velocity = (0,0,1)
-        velocity = transform.TransformDirection(velocity);
-        //Debug.Log("velocity="+velocity+" isGrounded="+ _cc.isGrounded);
+        else 
+        {
+            velocity.y = y * _speed;
+        }
+        if (Input.GetKeyDown(jump_key))
+        {
+            Debug.Log(_cc.isGrounded);
+            y += jumpHight;
+        }        
+         velocity = transform.TransformDirection(velocity);
         _cc.Move(velocity * Time.deltaTime);
     }
 }
