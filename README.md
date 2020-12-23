@@ -22,3 +22,9 @@ This is the class
 
 Player is able to jump when SPACE key is pressed
 ![jump](https://user-images.githubusercontent.com/44766214/102947017-03ef5b00-44cb-11eb-9e9b-63a589df2936.png)
+
+
+## Itch.io:
+
+Lab : (https://dymgames.itch.io/assignment-9-lab)
+Jump : (https://dymgames.itch.io/assignment-9-jump)
